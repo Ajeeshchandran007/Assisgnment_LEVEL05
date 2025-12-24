@@ -1,0 +1,133 @@
+The cache for model files in Transformers v4.22.0 has been updated. Migrating your old cache. This is a one-time only operation. You can interrupt this and resume the migration later on by calling `transformers.utils.move_cache()`.
+ 0/0 [00:00<?, ?it/s]
+======================================================================
+🎬 LLAMA 3.2 QLORA FINE-TUNING
+   Sentiment Classification with 4-bit Quantization
+   FIXED VERSION - Enhanced Stability
+======================================================================
+📊 Dataset: 60 samples
+   ✅ Positive: 20
+   ❌ Negative: 20
+   ⚪ Neutral:  20
+======================================================================
+
+======================================================================
+🔍 SYSTEM CHECK
+======================================================================
+✅ GPU Available: Tesla T4
+✅ Total GPU Memory: 15.83 GB
+✅ CUDA Version: 12.6
+✅ PyTorch Version: 2.9.0+cu126
+✅ GPU cache cleared
+======================================================================
+
+📦 Loading model with QLoRA (4-bit quantization)...
+   Tokenizer loaded: PreTrainedTokenizerFast
+   Vocab size: 128256
+   PAD token: <|end_of_text|> (ID: 128001)
+   EOS token: <|end_of_text|> (ID: 128001)
+   Loading base model (this may take 2-3 minutes)...
+config.json: 100%
+ 843/843 [00:00<00:00, 102kB/s]
+model.safetensors: 100%
+ 2.47G/2.47G [00:27<00:00, 199MB/s]
+generation_config.json: 100%
+ 185/185 [00:00<00:00, 21.0kB/s]
+✅ Model loaded successfully!
+   GPU Memory Allocated: 1.55 GB
+   GPU Memory Reserved: 2.11 GB
+
+🎯 Setting up LoRA configuration...
+
+📊 Trainable Parameters:
+trainable params: 5,636,096 || all params: 1,241,450,496 || trainable%: 0.4540
+
+📊 Preparing dataset...
+   Tokenizing training data...
+Tokenizing train: 100%
+ 48/48 [00:00<00:00, 594.68 examples/s]
+   Tokenizing validation data...
+Tokenizing validation: 100%
+ 12/12 [00:00<00:00, 581.95 examples/s]
+✅ Training samples: 48
+✅ Validation samples: 12
+
+🚀 Starting QLoRA training...
+   Device: cuda
+   Batch size: 2
+   Gradient accumulation: 4
+   Effective batch size: 8
+   Epochs: 3
+
+⏳ Training in progress...
+   (This may take 5-10 minutes on T4 GPU)
+ [18/18 02:20, Epoch 3/3]
+Epoch	Training Loss	Validation Loss
+1	3.489300	1.969825
+2	1.875700	1.519313
+3	1.457200	1.433776
+
+✅ Training completed successfully!
+
+💾 Saving model...
+✅ Model saved to: ./llama-3.2-qlora-sentiment
+
+======================================================================
+🧪 TESTING FINE-TUNED MODEL
+======================================================================
+
+🔍 Predictions:
+----------------------------------------------------------------------
+✅ Text: This is incredible! Best thing ever!...
+   Expected: POSITIVE | Predicted: POSITIVE
+
+✅ Text: Very disappointed with the quality....
+   Expected: NEGATIVE | Predicted: NEGATIVE
+
+✅ Text: It's okay, nothing special....
+   Expected: NEUTRAL | Predicted: NEUTRAL
+
+✅ Text: Absolutely love this product!...
+   Expected: POSITIVE | Predicted: POSITIVE
+
+✅ Text: Terrible, complete waste of money....
+   Expected: NEGATIVE | Predicted: NEGATIVE
+
+❌ Text: Average quality, does the job....
+   Expected: NEUTRAL | Predicted: UNKNOWN
+
+✅ Text: Outstanding! Highly recommend!...
+   Expected: POSITIVE | Predicted: POSITIVE
+
+✅ Text: Poor quality, not satisfied....
+   Expected: NEGATIVE | Predicted: NEGATIVE
+
+✅ Text: Decent product, nothing special....
+   Expected: NEUTRAL | Predicted: NEUTRAL
+
+✅ Text: Perfect! Exactly what I wanted!...
+   Expected: POSITIVE | Predicted: POSITIVE
+
+======================================================================
+🎯 FINAL ACCURACY: 9/10 = 90.0%
+======================================================================
+
+💬 Want to test interactively? (y/n): y
+
+Interactive Testing Mode (type 'quit' to exit)
+
+Enter text: satisfied product, but i have seen some issues
+🎭 Predicted Sentiment: NEUTRAL
+
+Enter text: product is up to the mark
+🎭 Predicted Sentiment: NEUTRAL
+
+Enter text: product is superb
+🎭 Predicted Sentiment: POSITIVE
+
+Enter text: very bad not useful at all
+🎭 Predicted Sentiment: NEGATIVE
+
+Enter text: quit
+
+👋 Goodbye!
