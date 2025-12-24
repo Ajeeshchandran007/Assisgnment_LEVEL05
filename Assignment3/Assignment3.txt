@@ -1,0 +1,2 @@
+perform training of an LLM built from scratch using transformer library which is of reasonably sized using a suitable dataset 
+such as Wikipedia text and test the LLM

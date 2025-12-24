@@ -1,0 +1,678 @@
+2025-12-17 13:40:33.978361: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1765978834.247814    7379 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1765978834.319078    7379 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1765978834.870346    7379 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1765978834.870397    7379 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1765978834.870402    7379 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1765978834.870408    7379 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-12-17 13:40:34.923236: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Using device: cuda
+GPU: Tesla T4
+GPU Memory: 15.83 GB
+============================================================
+Starting LLM Training Pipeline
+============================================================
+✓ GPU Training Enabled: Tesla T4
+✓ GPU Memory: 15.83 GB
+Loading Wikipedia dataset (100000 samples for filtering)...
+Resolving data files: 100% 41/41 [00:00<00:00, 173.67it/s]
+Filtering for quality content...
+Filtered to 50000 quality samples
+Tokenizer directory found at custom_llm_tokenizer_dir. Loading existing tokenizer.
+
+============================================================
+Tokenizer Verification:
+============================================================
+Original: The quick brown fox jumps over the lazy dog.
+Decoded:  The quick brown fox jumps over the lazy dog.
+Match: ✓ Perfect!
+Vocab size: 50257
+============================================================
+
+Loading 100000 examples for filtering and tokenization...
+Resolving data files: 100% 41/41 [00:00<00:00, 188766.70it/s]
+Filtering dataset...
+Using 50000 quality samples for training
+Tokenizing dataset...
+Map:   0% 0/50000 [00:00<?, ? examples/s]Token indices sequence length is longer than the specified maximum sequence length for this model (599 > 512). Running this sequence through the model will result in indexing errors
+Map: 100% 50000/50000 [01:43<00:00, 481.17 examples/s]
+Creating overlapping chunks for more effective training...
+Created 155942 overlapping chunks of size 512
+Train set: 140347 samples
+Eval set: 15595 samples
+Limited eval dataset to 500 samples for efficiency
+
+Dataset Summary:
+  Train dataset size: 140347
+  Eval dataset size: 500
+
+Initializing model from custom config...
+  Total Model Parameters: 30,142,848
+  Trainable Parameters: 30,142,848
+  Model size: ~120.57 MB (fp32)
+
+============================================================
+Training Configuration:
+============================================================
+  Device: cuda
+  Effective batch size: 64
+  Steps per epoch: 2192
+  Total training steps: 6576
+  Total epochs: 3
+  Learning rate: 0.0005
+  Mixed Precision (FP16): True
+  Estimated time: ~30-60 minutes on T4 GPU
+============================================================
+
+Starting pre-training...
+wandb: (1) Create a W&B account
+wandb: (2) Use an existing W&B account
+wandb: (3) Don't visualize my results
+wandb: Enter your choice: 3
+wandb: You chose "Don't visualize my results"
+wandb: Tracking run with wandb version 0.23.1
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /content/wandb/offline-run-20251217_134413-3hxzk7b8
+  0% 0/6579 [00:00<?, ?it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+`loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+{'loss': 10.871, 'grad_norm': 5.7334818840026855, 'learning_rate': 0.0, 'epoch': 0.0}
+{'loss': 10.1634, 'grad_norm': 1.8275068998336792, 'learning_rate': 4.9000000000000005e-05, 'epoch': 0.02}
+{'loss': 8.9185, 'grad_norm': 1.521936058998108, 'learning_rate': 9.900000000000001e-05, 'epoch': 0.05}
+{'loss': 7.6955, 'grad_norm': 0.5559785962104797, 'learning_rate': 0.000149, 'epoch': 0.07}
+{'loss': 7.1159, 'grad_norm': 0.7320728302001953, 'learning_rate': 0.000199, 'epoch': 0.09}
+{'loss': 6.822, 'grad_norm': 0.7637093663215637, 'learning_rate': 0.000249, 'epoch': 0.11}
+{'loss': 6.6029, 'grad_norm': 1.0180004835128784, 'learning_rate': 0.000299, 'epoch': 0.14}
+{'loss': 6.4232, 'grad_norm': 0.8344650268554688, 'learning_rate': 0.00034899999999999997, 'epoch': 0.16}
+{'loss': 6.2712, 'grad_norm': 0.7453252077102661, 'learning_rate': 0.00039900000000000005, 'epoch': 0.18}
+{'loss': 6.1346, 'grad_norm': 0.7280199527740479, 'learning_rate': 0.000449, 'epoch': 0.21}
+{'loss': 5.9874, 'grad_norm': 0.6722763776779175, 'learning_rate': 0.000499, 'epoch': 0.23}
+  8% 500/6579 [08:03<1:38:09,  1.03it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 16.30it/s]
+ 16% 5/32 [00:00<00:02, 12.58it/s]
+ 22% 7/32 [00:00<00:02, 11.38it/s]
+ 28% 9/32 [00:00<00:02, 10.86it/s]
+ 34% 11/32 [00:00<00:01, 10.61it/s]
+ 41% 13/32 [00:01<00:01, 10.47it/s]
+ 47% 15/32 [00:01<00:01, 10.32it/s]
+ 53% 17/32 [00:01<00:01, 10.21it/s]
+ 59% 19/32 [00:01<00:01, 10.13it/s]
+ 66% 21/32 [00:01<00:01, 10.21it/s]
+ 72% 23/32 [00:02<00:00, 10.18it/s]
+ 78% 25/32 [00:02<00:00, 10.11it/s]
+ 84% 27/32 [00:02<00:00, 10.05it/s]
+ 91% 29/32 [00:02<00:00, 10.09it/s]
+                                        
+{'eval_loss': 5.864387512207031, 'eval_runtime': 3.3314, 'eval_samples_per_second': 150.085, 'eval_steps_per_second': 9.605, 'epoch': 0.23}
+  8% 500/6579 [08:06<1:38:09,  1.03it/s]
+100% 32/32 [00:03<00:00, 10.18it/s]
+{'loss': 5.8909, 'grad_norm': 0.7736123204231262, 'learning_rate': 0.0004999198479888641, 'epoch': 0.25}
+{'loss': 5.7774, 'grad_norm': 0.6426685452461243, 'learning_rate': 0.0004996728694347307, 'epoch': 0.27}
+{'loss': 5.6662, 'grad_norm': 0.6858070492744446, 'learning_rate': 0.0004992591958492165, 'epoch': 0.3}
+{'loss': 5.584, 'grad_norm': 0.6684610247612, 'learning_rate': 0.0004986791034230484, 'epoch': 0.32}
+{'loss': 5.5155, 'grad_norm': 0.7571488618850708, 'learning_rate': 0.0004979329794571189, 'epoch': 0.34}
+{'loss': 5.4523, 'grad_norm': 0.6503780484199524, 'learning_rate': 0.0004970213221039034, 'epoch': 0.36}
+{'loss': 5.355, 'grad_norm': 0.6930127739906311, 'learning_rate': 0.0004959447400348664, 'epoch': 0.39}
+{'loss': 5.3062, 'grad_norm': 0.7068963646888733, 'learning_rate': 0.0004947039520340801, 'epoch': 0.41}
+{'loss': 5.2448, 'grad_norm': 0.6332129836082458, 'learning_rate': 0.0004932997865183252, 'epoch': 0.43}
+{'loss': 5.1793, 'grad_norm': 0.6788625717163086, 'learning_rate': 0.0004917331809839952, 'epoch': 0.46}
+ 15% 1000/6579 [16:13<1:29:50,  1.03it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 15.95it/s]
+ 16% 5/32 [00:00<00:02, 12.48it/s]
+ 22% 7/32 [00:00<00:02, 11.36it/s]
+ 28% 9/32 [00:00<00:02, 10.76it/s]
+ 34% 11/32 [00:00<00:02, 10.35it/s]
+ 41% 13/32 [00:01<00:01, 10.35it/s]
+ 47% 15/32 [00:01<00:01, 10.00it/s]
+ 53% 17/32 [00:01<00:01, 10.23it/s]
+ 59% 19/32 [00:01<00:01, 10.14it/s]
+ 66% 21/32 [00:01<00:01, 10.08it/s]
+ 72% 23/32 [00:02<00:00, 10.08it/s]
+ 78% 25/32 [00:02<00:00, 10.14it/s]
+ 84% 27/32 [00:02<00:00, 10.11it/s]
+ 91% 29/32 [00:02<00:00, 10.14it/s]
+                                         
+{'eval_loss': 5.047669887542725, 'eval_runtime': 3.5147, 'eval_samples_per_second': 142.258, 'eval_steps_per_second': 9.105, 'epoch': 0.46}
+ 15% 1000/6579 [16:16<1:29:50,  1.03it/s]
+100% 32/32 [00:03<00:00, 10.14it/s]
+{'loss': 5.1339, 'grad_norm': 0.6711520552635193, 'learning_rate': 0.0004900051813811741, 'epoch': 0.48}
+{'loss': 5.0938, 'grad_norm': 0.7078162431716919, 'learning_rate': 0.00048811694141530327, 'epoch': 0.5}
+{'loss': 5.0488, 'grad_norm': 0.7033332586288452, 'learning_rate': 0.0004860697217769057, 'epoch': 0.52}
+{'loss': 5.0086, 'grad_norm': 0.6085600852966309, 'learning_rate': 0.0004838648892998815, 'epoch': 0.55}
+{'loss': 4.955, 'grad_norm': 0.7262194752693176, 'learning_rate': 0.0004815039160489358, 'epoch': 0.57}
+{'loss': 4.9345, 'grad_norm': 0.6692108511924744, 'learning_rate': 0.0004789883783367495, 'epoch': 0.59}
+{'loss': 4.8515, 'grad_norm': 0.7628751397132874, 'learning_rate': 0.00047631995567154803, 'epoch': 0.62}
+{'loss': 4.8365, 'grad_norm': 0.752076268196106, 'learning_rate': 0.0004735004296357712, 'epoch': 0.64}
+{'loss': 4.7854, 'grad_norm': 0.7621195316314697, 'learning_rate': 0.00047053168269659354, 'epoch': 0.66}
+{'loss': 4.7673, 'grad_norm': 0.6729629635810852, 'learning_rate': 0.00046741569694908703, 'epoch': 0.68}
+ 23% 1500/6579 [24:22<1:21:50,  1.03it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 16.88it/s]
+ 16% 5/32 [00:00<00:02, 12.65it/s]
+ 22% 7/32 [00:00<00:02, 11.43it/s]
+ 28% 9/32 [00:00<00:02, 10.92it/s]
+ 34% 11/32 [00:00<00:01, 10.63it/s]
+ 41% 13/32 [00:01<00:01, 10.45it/s]
+ 47% 15/32 [00:01<00:01, 10.28it/s]
+ 53% 17/32 [00:01<00:01, 10.16it/s]
+ 59% 19/32 [00:01<00:01, 10.12it/s]
+ 66% 21/32 [00:01<00:01, 10.13it/s]
+ 72% 23/32 [00:02<00:00, 10.14it/s]
+ 78% 25/32 [00:02<00:00,  9.98it/s]
+ 84% 27/32 [00:02<00:00, 10.10it/s]
+ 91% 29/32 [00:02<00:00, 10.14it/s]
+                                         
+{'eval_loss': 4.594205856323242, 'eval_runtime': 3.3481, 'eval_samples_per_second': 149.337, 'eval_steps_per_second': 9.558, 'epoch': 0.68}
+ 23% 1500/6579 [24:25<1:21:50,  1.03it/s]
+100% 32/32 [00:03<00:00, 10.15it/s]
+{'loss': 4.7202, 'grad_norm': 0.7581363916397095, 'learning_rate': 0.0004641545527928688, 'epoch': 0.71}
+{'loss': 4.6914, 'grad_norm': 0.758581817150116, 'learning_rate': 0.00046075042754311425, 'epoch': 0.73}
+{'loss': 4.6424, 'grad_norm': 0.8419153094291687, 'learning_rate': 0.0004572055939768638, 'epoch': 0.75}
+{'loss': 4.6429, 'grad_norm': 0.6973404288291931, 'learning_rate': 0.00045352241881559563, 'epoch': 0.78}
+{'loss': 4.5947, 'grad_norm': 0.6362199783325195, 'learning_rate': 0.0004497033611450745, 'epoch': 0.8}
+{'loss': 4.5656, 'grad_norm': 0.689452052116394, 'learning_rate': 0.0004457509707735342, 'epoch': 0.82}
+{'loss': 4.5501, 'grad_norm': 0.6754937171936035, 'learning_rate': 0.0004416678865292884, 'epoch': 0.84}
+{'loss': 4.498, 'grad_norm': 0.6558433771133423, 'learning_rate': 0.0004374568344989068, 'epoch': 0.87}
+{'loss': 4.4798, 'grad_norm': 0.6344202160835266, 'learning_rate': 0.0004331206262071337, 'epoch': 0.89}
+{'loss': 4.4791, 'grad_norm': 0.6245917081832886, 'learning_rate': 0.0004286621567397623, 'epoch': 0.91}
+ 30% 2000/6579 [32:29<1:13:19,  1.04it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 16.38it/s]
+ 16% 5/32 [00:00<00:02, 12.19it/s]
+ 22% 7/32 [00:00<00:02, 11.27it/s]
+ 28% 9/32 [00:00<00:02, 10.84it/s]
+ 34% 11/32 [00:00<00:01, 10.57it/s]
+ 41% 13/32 [00:01<00:01, 10.45it/s]
+ 47% 15/32 [00:01<00:01, 10.33it/s]
+ 53% 17/32 [00:01<00:01, 10.21it/s]
+ 59% 19/32 [00:01<00:01, 10.13it/s]
+ 66% 21/32 [00:01<00:01, 10.14it/s]
+ 72% 23/32 [00:02<00:00, 10.16it/s]
+ 78% 25/32 [00:02<00:00, 10.13it/s]
+ 84% 27/32 [00:02<00:00, 10.06it/s]
+ 91% 29/32 [00:02<00:00, 10.18it/s]
+                                         
+{'eval_loss': 4.30256462097168, 'eval_runtime': 3.3456, 'eval_samples_per_second': 149.452, 'eval_steps_per_second': 9.565, 'epoch': 0.91}
+ 30% 2000/6579 [32:33<1:13:19,  1.04it/s]
+100% 32/32 [00:03<00:00, 10.19it/s]
+{'loss': 4.4513, 'grad_norm': 0.6443899273872375, 'learning_rate': 0.00042408440281072025, 'epoch': 0.93}
+{'loss': 4.4123, 'grad_norm': 0.6514313817024231, 'learning_rate': 0.00041939042077465493, 'epoch': 0.96}
+{'loss': 4.4145, 'grad_norm': 0.6817172765731812, 'learning_rate': 0.0004145833445863472, 'epoch': 0.98}
+ 33% 2193/6579 [35:41<1:10:20,  1.04it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 4.3722, 'grad_norm': 0.6531620621681213, 'learning_rate': 0.00040966638370831446, 'epoch': 1.0}
+{'loss': 4.3366, 'grad_norm': 0.6756768822669983, 'learning_rate': 0.00040464282096800097, 'epoch': 1.03}
+{'loss': 4.3141, 'grad_norm': 0.5818002223968506, 'learning_rate': 0.00039951601036598567, 'epoch': 1.05}
+{'loss': 4.2984, 'grad_norm': 0.635882556438446, 'learning_rate': 0.0003942893748366712, 'epoch': 1.07}
+{'loss': 4.2895, 'grad_norm': 0.6805228590965271, 'learning_rate': 0.0003889664039629487, 'epoch': 1.09}
+{'loss': 4.2771, 'grad_norm': 0.6468194127082825, 'learning_rate': 0.0003835506516463648, 'epoch': 1.12}
+{'loss': 4.2619, 'grad_norm': 0.700634777545929, 'learning_rate': 0.00037804573373434594, 'epoch': 1.14}
+ 38% 2500/6579 [40:37<1:05:29,  1.04it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 16.56it/s]
+ 16% 5/32 [00:00<00:02, 12.08it/s]
+ 22% 7/32 [00:00<00:02, 11.11it/s]
+ 28% 9/32 [00:00<00:02, 10.72it/s]
+ 34% 11/32 [00:01<00:02, 10.27it/s]
+ 41% 13/32 [00:01<00:01, 10.20it/s]
+ 47% 15/32 [00:01<00:01, 10.09it/s]
+ 53% 17/32 [00:01<00:01,  9.97it/s]
+ 56% 18/32 [00:01<00:01,  9.90it/s]
+ 62% 20/32 [00:01<00:01,  9.97it/s]
+ 69% 22/32 [00:02<00:01,  9.97it/s]
+ 75% 24/32 [00:02<00:00, 10.03it/s]
+ 81% 26/32 [00:02<00:00, 10.05it/s]
+ 88% 28/32 [00:02<00:00, 10.01it/s]
+ 94% 30/32 [00:02<00:00, 10.12it/s]
+                                         
+{'eval_loss': 4.146193504333496, 'eval_runtime': 3.4353, 'eval_samples_per_second': 145.549, 'eval_steps_per_second': 9.315, 'epoch': 1.14}
+ 38% 2500/6579 [40:41<1:05:29,  1.04it/s]
+100% 32/32 [00:03<00:00,  8.52it/s]
+{'loss': 4.2712, 'grad_norm': 0.6083879470825195, 'learning_rate': 0.00037245532560606386, 'epoch': 1.16}
+{'loss': 4.2568, 'grad_norm': 0.5816895365715027, 'learning_rate': 0.00036678315971855514, 'epoch': 1.19}
+{'loss': 4.2361, 'grad_norm': 0.5830568671226501, 'learning_rate': 0.0003610330231147323, 'epoch': 1.21}
+{'loss': 4.2315, 'grad_norm': 0.5883080363273621, 'learning_rate': 0.00035520875489494997, 'epoch': 1.23}
+{'loss': 4.219, 'grad_norm': 0.6077618598937988, 'learning_rate': 0.0003493142436538155, 'epoch': 1.25}
+{'loss': 4.2002, 'grad_norm': 0.5936636328697205, 'learning_rate': 0.0003433534248839539, 'epoch': 1.28}
+{'loss': 4.1938, 'grad_norm': 0.5843160152435303, 'learning_rate': 0.00033733027834846125, 'epoch': 1.3}
+{'loss': 4.1951, 'grad_norm': 0.5722782015800476, 'learning_rate': 0.00033124882542380133, 'epoch': 1.32}
+{'loss': 4.1898, 'grad_norm': 0.5829432606697083, 'learning_rate': 0.00032511312641491773, 'epoch': 1.35}
+{'loss': 4.1552, 'grad_norm': 0.5865637063980103, 'learning_rate': 0.0003189272778443571, 'epoch': 1.37}
+ 46% 3000/6579 [48:47<57:29,  1.04it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 16.46it/s]
+ 16% 5/32 [00:00<00:02, 12.66it/s]
+ 22% 7/32 [00:00<00:02, 11.43it/s]
+ 28% 9/32 [00:00<00:02, 10.86it/s]
+ 34% 11/32 [00:00<00:02, 10.46it/s]
+ 41% 13/32 [00:01<00:01, 10.08it/s]
+ 47% 15/32 [00:01<00:01, 10.23it/s]
+ 53% 17/32 [00:01<00:01, 10.15it/s]
+ 59% 19/32 [00:01<00:01, 10.13it/s]
+ 66% 21/32 [00:01<00:01, 10.15it/s]
+ 72% 23/32 [00:02<00:00, 10.15it/s]
+ 78% 25/32 [00:02<00:00, 10.10it/s]
+ 84% 27/32 [00:02<00:00, 10.02it/s]
+ 91% 29/32 [00:02<00:00, 10.14it/s]
+                                       
+{'eval_loss': 4.031336784362793, 'eval_runtime': 3.3602, 'eval_samples_per_second': 148.803, 'eval_steps_per_second': 9.523, 'epoch': 1.37}
+ 46% 3000/6579 [48:51<57:29,  1.04it/s]
+100% 32/32 [00:03<00:00, 10.16it/s]
+{'loss': 4.152, 'grad_norm': 0.5719132423400879, 'learning_rate': 0.00031269540971720904, 'epoch': 1.39}
+{'loss': 4.1436, 'grad_norm': 0.6212021708488464, 'learning_rate': 0.00030642168276369386, 'epoch': 1.41}
+{'loss': 4.1461, 'grad_norm': 0.5855944752693176, 'learning_rate': 0.0003001102856612349, 'epoch': 1.44}
+{'loss': 4.1376, 'grad_norm': 0.5734108090400696, 'learning_rate': 0.00029376543223787194, 'epoch': 1.46}
+{'loss': 4.1103, 'grad_norm': 0.5979881882667542, 'learning_rate': 0.0002873913586588838, 'epoch': 1.48}
+{'loss': 4.1241, 'grad_norm': 0.6040030121803284, 'learning_rate': 0.0002809923205984959, 'epoch': 1.5}
+{'loss': 4.1153, 'grad_norm': 0.5875247716903687, 'learning_rate': 0.0002745725903985639, 'epoch': 1.53}
+{'loss': 4.1114, 'grad_norm': 0.5671666860580444, 'learning_rate': 0.0002681364542161281, 'epoch': 1.55}
+{'loss': 4.1093, 'grad_norm': 0.5946474075317383, 'learning_rate': 0.0002616882091617451, 'epoch': 1.57}
+{'loss': 4.1094, 'grad_norm': 0.5587711334228516, 'learning_rate': 0.0002552321604305052, 'epoch': 1.6}
+ 53% 3500/6579 [56:54<49:22,  1.04it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 16.34it/s]
+ 16% 5/32 [00:00<00:02, 12.45it/s]
+ 22% 7/32 [00:00<00:02, 11.31it/s]
+ 28% 9/32 [00:00<00:02, 10.81it/s]
+ 34% 11/32 [00:00<00:01, 10.55it/s]
+ 41% 13/32 [00:01<00:01, 10.44it/s]
+ 47% 15/32 [00:01<00:01, 10.31it/s]
+ 53% 17/32 [00:01<00:01, 10.14it/s]
+ 59% 19/32 [00:01<00:01, 10.14it/s]
+ 66% 21/32 [00:01<00:01, 10.12it/s]
+ 72% 23/32 [00:02<00:00, 10.17it/s]
+ 78% 25/32 [00:02<00:00, 10.14it/s]
+ 84% 27/32 [00:02<00:00, 10.09it/s]
+ 91% 29/32 [00:02<00:00, 10.11it/s]
+                                       
+{'eval_loss': 3.9541444778442383, 'eval_runtime': 3.3327, 'eval_samples_per_second': 150.03, 'eval_steps_per_second': 9.602, 'epoch': 1.6}
+ 53% 3500/6579 [56:57<49:22,  1.04it/s]
+100% 32/32 [00:03<00:00, 10.12it/s]
+{'loss': 4.0867, 'grad_norm': 0.5481337308883667, 'learning_rate': 0.000248772618427653, 'epoch': 1.62}
+{'loss': 4.076, 'grad_norm': 0.5723477602005005, 'learning_rate': 0.00024231389589072895, 'epoch': 1.64}
+{'loss': 4.0748, 'grad_norm': 0.5728638768196106, 'learning_rate': 0.0002358603050101544, 'epoch': 1.66}
+{'loss': 4.0845, 'grad_norm': 0.5608649849891663, 'learning_rate': 0.00022941615455018052, 'epoch': 1.69}
+{'loss': 4.0692, 'grad_norm': 0.5890583395957947, 'learning_rate': 0.00022298574697212628, 'epoch': 1.71}
+{'loss': 4.0524, 'grad_norm': 0.5476818680763245, 'learning_rate': 0.000216573375561824, 'epoch': 1.73}
+{'loss': 4.0602, 'grad_norm': 0.5689362287521362, 'learning_rate': 0.00021018332156319037, 'epoch': 1.76}
+{'loss': 4.0563, 'grad_norm': 0.5694575309753418, 'learning_rate': 0.00020381985131983838, 'epoch': 1.78}
+{'loss': 4.0318, 'grad_norm': 0.5449434518814087, 'learning_rate': 0.0001974872134266365, 'epoch': 1.8}
+{'loss': 4.0435, 'grad_norm': 0.5652372241020203, 'learning_rate': 0.0001911896358931187, 'epoch': 1.82}
+ 61% 4000/6579 [1:05:00<41:18,  1.04it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 17.64it/s]
+ 16% 5/32 [00:00<00:02, 12.55it/s]
+ 22% 7/32 [00:00<00:02, 11.69it/s]
+ 28% 9/32 [00:00<00:02, 10.70it/s]
+ 34% 11/32 [00:00<00:02, 10.40it/s]
+ 41% 13/32 [00:01<00:01, 10.21it/s]
+ 47% 15/32 [00:01<00:01, 10.09it/s]
+ 53% 17/32 [00:01<00:01, 10.13it/s]
+ 59% 19/32 [00:01<00:01,  9.95it/s]
+ 66% 21/32 [00:01<00:01,  9.97it/s]
+ 72% 23/32 [00:02<00:00,  9.90it/s]
+ 78% 25/32 [00:02<00:00, 10.02it/s]
+ 84% 27/32 [00:02<00:00, 10.01it/s]
+ 91% 29/32 [00:02<00:00, 10.03it/s]
+                                         
+{'eval_loss': 3.8935546875, 'eval_runtime': 3.4267, 'eval_samples_per_second': 145.915, 'eval_steps_per_second': 9.339, 'epoch': 1.82}
+ 61% 4000/6579 [1:05:04<41:18,  1.04it/s]
+100% 32/32 [00:03<00:00, 10.06it/s]
+{'loss': 4.0379, 'grad_norm': 0.5558186769485474, 'learning_rate': 0.0001849313233206379, 'epoch': 1.85}
+{'loss': 4.0178, 'grad_norm': 0.5633600354194641, 'learning_rate': 0.00017871645409514749, 'epoch': 1.87}
+{'loss': 4.0353, 'grad_norm': 0.5666300654411316, 'learning_rate': 0.00017254917759748718, 'epoch': 1.89}
+{'loss': 4.0098, 'grad_norm': 0.5500044226646423, 'learning_rate': 0.00016643361143303247, 'epoch': 1.92}
+{'loss': 4.0103, 'grad_norm': 0.5412760376930237, 'learning_rate': 0.00016037383868256017, 'epoch': 1.94}
+{'loss': 4.019, 'grad_norm': 0.5442922115325928, 'learning_rate': 0.00015437390517616421, 'epoch': 1.96}
+{'loss': 3.9989, 'grad_norm': 0.5688104033470154, 'learning_rate': 0.00014843781679204206, 'epoch': 1.98}
+ 67% 4386/6579 [1:11:17<35:54,  1.02it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+{'loss': 3.9866, 'grad_norm': 0.5419844388961792, 'learning_rate': 0.00014256953678195466, 'epoch': 2.01}
+{'loss': 3.9108, 'grad_norm': 0.5663345456123352, 'learning_rate': 0.00013677298312514665, 'epoch': 2.03}
+{'loss': 3.9394, 'grad_norm': 0.5531200766563416, 'learning_rate': 0.00013105202591249328, 'epoch': 2.05}
+ 68% 4500/6579 [1:13:08<33:53,  1.02it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 16.64it/s]
+ 16% 5/32 [00:00<00:02, 12.35it/s]
+ 22% 7/32 [00:00<00:02, 10.98it/s]
+ 28% 9/32 [00:00<00:02, 10.35it/s]
+ 34% 11/32 [00:01<00:02, 10.37it/s]
+ 41% 13/32 [00:01<00:01, 10.22it/s]
+ 47% 15/32 [00:01<00:01, 10.15it/s]
+ 53% 17/32 [00:01<00:01, 10.12it/s]
+ 59% 19/32 [00:01<00:01, 10.12it/s]
+ 66% 21/32 [00:01<00:01, 10.15it/s]
+ 72% 23/32 [00:02<00:00, 10.10it/s]
+ 78% 25/32 [00:02<00:00, 10.05it/s]
+ 84% 27/32 [00:02<00:00, 10.04it/s]
+ 91% 29/32 [00:02<00:00, 10.12it/s]
+                                         
+{'eval_loss': 3.848555326461792, 'eval_runtime': 3.5334, 'eval_samples_per_second': 141.508, 'eval_steps_per_second': 9.057, 'epoch': 2.05}
+ 68% 4500/6579 [1:13:12<33:53,  1.02it/s]
+100% 32/32 [00:03<00:00, 10.13it/s]
+{'loss': 3.9255, 'grad_norm': 0.5229907631874084, 'learning_rate': 0.00012541048476261873, 'epoch': 2.07}
+{'loss': 3.9249, 'grad_norm': 0.539210855960846, 'learning_rate': 0.00011985212627171419, 'epoch': 2.1}
+{'loss': 3.9265, 'grad_norm': 0.5378537178039551, 'learning_rate': 0.00011438066149875487, 'epoch': 2.12}
+{'loss': 3.913, 'grad_norm': 0.5549012422561646, 'learning_rate': 0.0001089997434877987, 'epoch': 2.14}
+{'loss': 3.9242, 'grad_norm': 0.523814857006073, 'learning_rate': 0.00010371296482901659, 'epoch': 2.17}
+{'loss': 3.9196, 'grad_norm': 0.5341991186141968, 'learning_rate': 9.852385526008639e-05, 'epoch': 2.19}
+{'loss': 3.9135, 'grad_norm': 0.5188746452331543, 'learning_rate': 9.34358793095508e-05, 'epoch': 2.21}
+{'loss': 3.9186, 'grad_norm': 0.5444007515907288, 'learning_rate': 8.845243398371108e-05, 'epoch': 2.23}
+{'loss': 3.9028, 'grad_norm': 0.5456316471099854, 'learning_rate': 8.357684649860331e-05, 'epoch': 2.26}
+{'loss': 3.9028, 'grad_norm': 0.522612988948822, 'learning_rate': 7.881237205857006e-05, 'epoch': 2.28}
+ 76% 5000/6579 [1:21:16<25:18,  1.04it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 16.33it/s]
+ 16% 5/32 [00:00<00:02, 12.56it/s]
+ 22% 7/32 [00:00<00:02, 11.29it/s]
+ 28% 9/32 [00:00<00:02, 10.79it/s]
+ 34% 11/32 [00:00<00:02, 10.48it/s]
+ 41% 13/32 [00:01<00:01, 10.34it/s]
+ 47% 15/32 [00:01<00:01, 10.30it/s]
+ 53% 17/32 [00:01<00:01, 10.23it/s]
+ 59% 19/32 [00:01<00:01, 10.18it/s]
+ 66% 21/32 [00:01<00:01, 10.14it/s]
+ 72% 23/32 [00:02<00:00, 10.12it/s]
+ 78% 25/32 [00:02<00:00, 10.16it/s]
+ 84% 27/32 [00:02<00:00, 10.07it/s]
+ 91% 29/32 [00:02<00:00, 10.13it/s]
+                                         
+{'eval_loss': 3.817453145980835, 'eval_runtime': 3.354, 'eval_samples_per_second': 149.076, 'eval_steps_per_second': 9.541, 'epoch': 2.28}
+ 76% 5000/6579 [1:21:19<25:18,  1.04it/s]
+100% 32/32 [00:03<00:00, 10.11it/s]
+{'loss': 3.9184, 'grad_norm': 0.540824830532074, 'learning_rate': 7.416219168291138e-05, 'epoch': 2.3}
+{'loss': 3.8978, 'grad_norm': 0.528374433517456, 'learning_rate': 6.962941008206436e-05, 'epoch': 2.33}
+{'loss': 3.9076, 'grad_norm': 0.5229527950286865, 'learning_rate': 6.52170535847322e-05, 'epoch': 2.35}
+{'loss': 3.8995, 'grad_norm': 0.5380154848098755, 'learning_rate': 6.092806811734464e-05, 'epoch': 2.37}
+{'loss': 3.8933, 'grad_norm': 0.5338622331619263, 'learning_rate': 5.676531723719819e-05, 'epoch': 2.39}
+{'loss': 3.8962, 'grad_norm': 0.5352963805198669, 'learning_rate': 5.273158022059224e-05, 'epoch': 2.42}
+{'loss': 3.8912, 'grad_norm': 0.5048487186431885, 'learning_rate': 4.8829550207234255e-05, 'epoch': 2.44}
+{'loss': 3.8944, 'grad_norm': 0.5459803938865662, 'learning_rate': 4.506183240215531e-05, 'epoch': 2.46}
+{'loss': 3.8878, 'grad_norm': 0.516350269317627, 'learning_rate': 4.143094233633449e-05, 'epoch': 2.49}
+{'loss': 3.8869, 'grad_norm': 0.537854015827179, 'learning_rate': 3.793930418719577e-05, 'epoch': 2.51}
+ 84% 5500/6579 [1:29:23<17:18,  1.04it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 16.48it/s]
+ 16% 5/32 [00:00<00:02, 12.21it/s]
+ 22% 7/32 [00:00<00:02, 11.48it/s]
+ 28% 9/32 [00:00<00:02, 10.88it/s]
+ 34% 11/32 [00:00<00:02, 10.47it/s]
+ 41% 13/32 [00:01<00:01, 10.33it/s]
+ 47% 15/32 [00:01<00:01, 10.24it/s]
+ 53% 17/32 [00:01<00:01, 10.25it/s]
+ 59% 19/32 [00:01<00:01, 10.20it/s]
+ 66% 21/32 [00:01<00:01, 10.15it/s]
+ 72% 23/32 [00:02<00:00, 10.09it/s]
+ 78% 25/32 [00:02<00:00, 10.09it/s]
+ 84% 27/32 [00:02<00:00, 10.04it/s]
+ 91% 29/32 [00:02<00:00, 10.16it/s]
+                                         
+{'eval_loss': 3.7955546379089355, 'eval_runtime': 3.3533, 'eval_samples_per_second': 149.105, 'eval_steps_per_second': 9.543, 'epoch': 2.51}
+ 84% 5500/6579 [1:29:26<17:18,  1.04it/s]
+100% 32/32 [00:03<00:00, 10.14it/s]
+{'loss': 3.8991, 'grad_norm': 0.5116277933120728, 'learning_rate': 3.4589249160096815e-05, 'epoch': 2.53}
+{'loss': 3.8886, 'grad_norm': 0.5357851386070251, 'learning_rate': 3.1383013931890385e-05, 'epoch': 2.55}
+{'loss': 3.897, 'grad_norm': 0.5488853454589844, 'learning_rate': 2.832273915759917e-05, 'epoch': 2.58}
+{'loss': 3.8782, 'grad_norm': 0.5277782082557678, 'learning_rate': 2.5410468041199258e-05, 'epoch': 2.6}
+{'loss': 3.8778, 'grad_norm': 0.5329793095588684, 'learning_rate': 2.2648144971467137e-05, 'epoch': 2.62}
+{'loss': 3.8714, 'grad_norm': 0.5188590884208679, 'learning_rate': 2.003761422380143e-05, 'epoch': 2.64}
+{'loss': 3.8744, 'grad_norm': 0.5188190340995789, 'learning_rate': 1.758061872888536e-05, 'epoch': 2.67}
+{'loss': 3.8857, 'grad_norm': 0.5254331231117249, 'learning_rate': 1.5278798909012487e-05, 'epoch': 2.69}
+{'loss': 3.8787, 'grad_norm': 0.5285544991493225, 'learning_rate': 1.3133691582852713e-05, 'epoch': 2.71}
+{'loss': 3.8887, 'grad_norm': 0.5126044750213623, 'learning_rate': 1.1146728939389367e-05, 'epoch': 2.74}
+ 91% 6000/6579 [1:37:30<09:16,  1.04it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 16.96it/s]
+ 16% 5/32 [00:00<00:02, 12.63it/s]
+ 22% 7/32 [00:00<00:02, 11.40it/s]
+ 28% 9/32 [00:00<00:02, 10.86it/s]
+ 34% 11/32 [00:00<00:01, 10.64it/s]
+ 41% 13/32 [00:01<00:01, 10.49it/s]
+ 47% 15/32 [00:01<00:01, 10.33it/s]
+ 53% 17/32 [00:01<00:01,  9.97it/s]
+ 59% 19/32 [00:01<00:01, 10.11it/s]
+ 66% 21/32 [00:01<00:01,  9.90it/s]
+ 69% 22/32 [00:02<00:01,  9.89it/s]
+ 72% 23/32 [00:02<00:00,  9.83it/s]
+ 78% 25/32 [00:02<00:00,  9.92it/s]
+ 81% 26/32 [00:02<00:00,  9.89it/s]
+ 88% 28/32 [00:02<00:00, 10.09it/s]
+ 94% 30/32 [00:02<00:00, 10.07it/s]
+                                         
+{'eval_loss': 3.7853589057922363, 'eval_runtime': 3.4168, 'eval_samples_per_second': 146.337, 'eval_steps_per_second': 9.366, 'epoch': 2.74}
+ 91% 6000/6579 [1:37:33<09:16,  1.04it/s]
+100% 32/32 [00:03<00:00,  8.51it/s]
+{'loss': 3.8957, 'grad_norm': 0.524341344833374, 'learning_rate': 9.319237581712963e-06, 'epoch': 2.76}
+{'loss': 3.8783, 'grad_norm': 0.5418991446495056, 'learning_rate': 7.652437641309601e-06, 'epoch': 2.78}
+{'loss': 3.8871, 'grad_norm': 0.513220489025116, 'learning_rate': 6.14744196343553e-06, 'epoch': 2.8}
+{'loss': 3.8888, 'grad_norm': 0.5072415471076965, 'learning_rate': 4.80525536412188e-06, 'epoch': 2.83}
+{'loss': 3.8783, 'grad_norm': 0.5123140215873718, 'learning_rate': 3.6267739593054962e-06, 'epoch': 2.85}
+{'loss': 3.8748, 'grad_norm': 0.5047493577003479, 'learning_rate': 2.612784566533716e-06, 'epoch': 2.87}
+{'loss': 3.8867, 'grad_norm': 0.510090172290802, 'learning_rate': 1.7639641796425577e-06, 'epoch': 2.9}
+{'loss': 3.8675, 'grad_norm': 0.5246783494949341, 'learning_rate': 1.0808795167595032e-06, 'epoch': 2.92}
+{'loss': 3.8916, 'grad_norm': 0.5146772265434265, 'learning_rate': 5.639866419317185e-07, 'epoch': 2.94}
+{'loss': 3.8852, 'grad_norm': 0.5137369632720947, 'learning_rate': 2.1363066063337378e-07, 'epoch': 2.96}
+ 99% 6500/6579 [1:45:37<01:16,  1.03it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+
+  0% 0/32 [00:00<?, ?it/s]
+  9% 3/32 [00:00<00:01, 15.80it/s]
+ 16% 5/32 [00:00<00:02, 12.74it/s]
+ 22% 7/32 [00:00<00:02, 11.47it/s]
+ 28% 9/32 [00:00<00:02, 10.93it/s]
+ 34% 11/32 [00:00<00:01, 10.55it/s]
+ 41% 13/32 [00:01<00:01, 10.45it/s]
+ 47% 15/32 [00:01<00:01, 10.36it/s]
+ 53% 17/32 [00:01<00:01, 10.25it/s]
+ 59% 19/32 [00:01<00:01, 10.18it/s]
+ 66% 21/32 [00:01<00:01, 10.12it/s]
+ 72% 23/32 [00:02<00:00, 10.15it/s]
+ 78% 25/32 [00:02<00:00, 10.14it/s]
+ 84% 27/32 [00:02<00:00, 10.09it/s]
+ 91% 29/32 [00:02<00:00, 10.11it/s]
+                                         
+{'eval_loss': 3.782379388809204, 'eval_runtime': 3.4205, 'eval_samples_per_second': 146.176, 'eval_steps_per_second': 9.355, 'epoch': 2.96}
+ 99% 6500/6579 [1:45:41<01:16,  1.03it/s]
+100% 32/32 [00:03<00:00, 10.09it/s]
+{'loss': 3.8799, 'grad_norm': 0.5232512354850769, 'learning_rate': 3.0045489354618704e-08, 'epoch': 2.99}
+100% 6579/6579 [1:46:58<00:00,  1.03it/s]There were missing keys in the checkpoint model loaded: ['lm_head.weight'].
+{'train_runtime': 6441.9168, 'train_samples_per_second': 65.36, 'train_steps_per_second': 1.021, 'train_loss': 4.4974066949865525, 'epoch': 3.0}
+100% 6579/6579 [1:47:01<00:00,  1.02it/s]
+
+Saving final model...
+Model and tokenizer saved to /content/drive/MyDrive/custom_llm_output/final_model
+
+Running final evaluation...
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+100% 32/32 [00:03<00:00,  9.97it/s]
+
+============================================================
+*** Final Evaluation Results ***
+============================================================
+  Loss: 3.7824
+  Perplexity: 43.92
+  Quality: Excellent! Model has learned well.
+============================================================
+
+Training complete!
+
+============================================================
+Testing Text Generation
+============================================================
+Loading model from /content/drive/MyDrive/custom_llm_output/final_model...
+Model loaded successfully!
+
+Generating text for test prompts...
+
+[1/5] Prompt: "The quick brown fox jumps over the"
+Generated: The quick brown fox jumps over the eyes and she has a little-hearted relationship.
+
+References 
+ The Guide to Women, June (2004). "A Brief History of Women: How We Are" in Time.  .
+
+External links
+
+------------------------------------------------------------
+
+[2/5] Prompt: "In the beginning,"
+Generated: In the beginning, he joined the club in 2003 as a free agent for the first time. He was appointed manager of the club's youth team on October 23 and was promoted to senior level at the end of 2004.
+
+At that point,
+
+------------------------------------------------------------
+
+[3/5] Prompt: "Artificial intelligence is"
+Generated: Artificial intelligence is the main target of an explosion in a human body of life. In the case, many people were sent to Earth by means of sight and their bodies and their own experiences are not allowed to be destroyed.
+
+The primary aim
+
+------------------------------------------------------------
+
+[4/5] Prompt: "The history of"
+Generated: The history of the game was not written by the British company, but it was never included in a few days. In the first three seasons, it is still possible that players can take their own cards to advance and defend them through the game's course
+
+------------------------------------------------------------
+
+[5/5] Prompt: "Scientists have discovered"
+Generated: Scientists have discovered that the origin of this species is based on what are now, it appears to be a very rare species. The genus was initially thought to contain an amorphous stem from its teeth by which it would later become synonymous with other species
+
+------------------------------------------------------------
+
+============================================================
+Text generation testing complete!
+============================================================
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /content/wandb/offline-run-20251217_134413-3hxzk7b8
+wandb: Find logs at: wandb/offline-run-20251217_134413-3hxzk7b8/logs
