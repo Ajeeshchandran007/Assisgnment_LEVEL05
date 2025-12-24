@@ -1,0 +1,233 @@
+Fri Dec 19 15:37:53 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.54.15              Driver Version: 550.54.15      CUDA Version: 12.4     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |
+| N/A   70C    P0             31W /   70W |    5952MiB /  15360MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
++-----------------------------------------------------------------------------------------+
+
+======================================================================
+Installing required packages...
+======================================================================
+✓ Installation complete!
+
+======================================================================
+Using device: cuda
+GPU Name: Tesla T4
+GPU Memory: 15.83 GB
+======================================================================
+
+Dataset prepared!
+Total samples: 120
+Categories: Account, Billing, Product, Shipping, Technical
+Helper functions loaded!
+Loading tokenizer...
+Loading model with 4-bit quantization for T4 GPU...
+
+✓ Model loaded successfully!
+Trainable parameters: 6,815,744 / 1,242,630,144 (0.55%)
+Preparing dataset...
+
+Class Distribution:
+category
+Account      24
+Billing      24
+Product      24
+Shipping     24
+Technical    24
+Name: count, dtype: int64
+
+
+Training samples: 96
+Validation samples: 24
+
+Tokenizing dataset...
+Map: 100%
+ 96/96 [00:00<00:00, 1707.76 examples/s]
+Map: 100%
+ 24/24 [00:00<00:00, 784.95 examples/s]
+✓ Data preparation complete!
+
+======================================================================
+STARTING TRAINING ON T4 GPU
+======================================================================
+
+ [120/120 01:25, Epoch 10/10]
+Epoch	Training Loss	Validation Loss
+1	2.487500	1.754336
+2	1.455100	1.660570
+3	1.129900	1.694928
+4	0.914700	1.791159
+5	0.510800	1.561450
+6	0.436600	1.503733
+7	0.350400	1.845153
+8	0.353300	1.827032
+9	0.318300	1.833524
+10	0.289500	1.844896
+
+✓ Training complete!
+Saving model to ./llama-classifier-finetuned...
+✓ Model saved!
+
+======================================================================
+EVALUATING MODEL
+======================================================================
+
+Predictions on test set:
+----------------------------------------------------------------------
+✗ Ticket: I can't access the premium features I paid for...
+  True: Account      | Predicted: Billing
+✓ Ticket: Need to cancel my recurring payment...
+  True: Billing      | Predicted: Billing
+✓ Ticket: My discount code wasn't applied...
+  True: Billing      | Predicted: Billing
+✓ Ticket: Where is my tracking number?...
+  True: Shipping     | Predicted: Shipping
+✓ Ticket: Why is there a pending charge on my statement?...
+  True: Billing      | Predicted: Billing
+✓ Ticket: Can I pick up from local facility?...
+  True: Shipping     | Predicted: Shipping
+✓ Ticket: Serial number doesn't match...
+  True: Product      | Predicted: Product
+✓ Ticket: Why was my account suspended without notification?...
+  True: Account      | Predicted: Account
+✓ Ticket: My account password is not working and I can't log...
+  True: Account      | Predicted: Account
+✓ Ticket: Currency conversion fee too high...
+  True: Billing      | Predicted: Billing
+✓ Ticket: Product arrived dirty...
+  True: Product      | Predicted: Product
+✓ Ticket: Tracking hasn't updated in 5 days...
+  True: Shipping     | Predicted: Shipping
+✓ Ticket: Estimated delivery date passed...
+  True: Shipping     | Predicted: Shipping
+✓ Ticket: My account name is misspelled...
+  True: Account      | Predicted: Account
+✓ Ticket: Product size doesn't match description...
+  True: Product      | Predicted: Product
+✓ Ticket: Need signature required delivery...
+  True: Shipping     | Predicted: Shipping
+✓ Ticket: Package left in rain and damaged...
+  True: Shipping     | Predicted: Shipping
+✓ Ticket: I was charged twice for the same order on my credi...
+  True: Billing      | Predicted: Billing
+✓ Ticket: Can I combine shipments?...
+  True: Shipping     | Predicted: Shipping
+✓ Ticket: Getting 'server error' message...
+  True: Technical    | Predicted: Technical
+✓ Ticket: Can't connect to database...
+  True: Technical    | Predicted: Technical
+✗ Ticket: The device overheats after 10 minutes of use...
+  True: Product      | Predicted: Technical
+✓ Ticket: Need to update my privacy settings...
+  True: Account      | Predicted: Account
+✓ Ticket: Can't download the app from store...
+  True: Technical    | Predicted: Technical
+
+======================================================================
+CLASSIFICATION RESULTS
+======================================================================
+
+Overall Accuracy: 91.67%
+
+Detailed Classification Report:
+              precision    recall  f1-score   support
+
+     Account       1.00      0.80      0.89         5
+     Billing       0.83      1.00      0.91         5
+     Product       1.00      0.75      0.86         4
+    Shipping       1.00      1.00      1.00         7
+   Technical       0.75      1.00      0.86         3
+
+    accuracy                           0.92        24
+   macro avg       0.92      0.91      0.90        24
+weighted avg       0.93      0.92      0.92        24
+
+
+
+======================================================================
+TESTING ON NEW UNSEEN EXAMPLES
+======================================================================
+
+📋 Ticket: I forgot my password and the reset email isn't arriving
+🏷️  Predicted: Account
+
+📋 Ticket: The product broke within the warranty period
+🏷️  Predicted: Product
+
+📋 Ticket: Double charge appeared on my bank statement today
+🏷️  Predicted: Billing
+
+📋 Ticket: Where is my package? Tracking hasn't updated in 5 days
+🏷️  Predicted: Shipping
+
+📋 Ticket: Application crashes every time I click the save button
+🏷️  Predicted: Technical
+
+📋 Ticket: How do I update my profile picture?
+🏷️  Predicted: Account
+
+📋 Ticket: The item doesn't match the product description
+🏷️  Predicted: Product
+
+📋 Ticket: Why was I charged for expedited shipping?
+🏷️  Predicted: Shipping
+
+📋 Ticket: My order hasn't shipped yet and it's been a week
+🏷️  Predicted: Shipping
+
+📋 Ticket: Getting error 404 when accessing my dashboard
+🏷️  Predicted: Technical
+
+======================================================================
+Summary of Predictions on New Examples:
+                                                 ticket prediction
+I forgot my password and the reset email isn't arriving    Account
+           The product broke within the warranty period    Product
+      Double charge appeared on my bank statement today    Billing
+ Where is my package? Tracking hasn't updated in 5 days   Shipping
+ Application crashes every time I click the save button  Technical
+                    How do I update my profile picture?    Account
+         The item doesn't match the product description    Product
+              Why was I charged for expedited shipping?   Shipping
+       My order hasn't shipped yet and it's been a week   Shipping
+          Getting error 404 when accessing my dashboard  Technical
+
+======================================================================
+TRY YOUR OWN TICKET!
+======================================================================
+
+Example: predict_ticket('Your support ticket text here')
+
+Try these examples:
+  predict_ticket('My credit card was charged multiple times')
+  predict_ticket('Cannot access my account dashboard')
+  predict_ticket('Product arrived broken and damaged')
+
+======================================================================
+PREDICTION RESULT
+======================================================================
+
+📋 Your Ticket: The software license expired but I renewed it already
+🏷️  Predicted Category: Billing
+
+======================================================================
+
+======================================================================
+✓ ALL DONE! Model is ready to use!
+======================================================================
+
+Model saved at: ./llama-classifier-finetuned
+You can download it from Colab's file browser (left sidebar)

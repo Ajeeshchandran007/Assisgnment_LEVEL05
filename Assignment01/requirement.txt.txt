@@ -1,0 +1,7 @@
+transformers>=4.56.1
+datasets
+peft
+accelerate
+bitsandbytes
+scikit-learn
+trl
