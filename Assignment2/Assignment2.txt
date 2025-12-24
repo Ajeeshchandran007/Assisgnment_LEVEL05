@@ -1,0 +1,1 @@
+implement transfer learning using an LLM that is used by all like Mistral or Claude with a small dataset for a chosen task

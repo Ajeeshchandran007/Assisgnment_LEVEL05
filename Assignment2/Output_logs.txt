@@ -1,0 +1,97 @@
+ python.exe .\TransferLearning.py
+======================================================================
+LLAMA 3.2 SENTIMENT CLASSIFICATION - CPU VERSION
+======================================================================
+Dataset size: 60 samples
+Balanced: 20 positive, 20 negative, 20 neutral
+======================================================================
+
+Using device: cpu
+⚠️  Running on CPU - training will be slower but works without GPU
+Loading model and tokenizer...
+Model and tokenizer loaded successfully!
+Setting up LoRA configuration...
+The installed version of bitsandbytes was compiled without GPU support. 8-bit optimizers, 8-bit multiplication, and GPU quantization are unavailable.
+trainable params: 851,968 || all params: 1,236,666,368 || trainable%: 0.0689
+Preparing dataset...
+Map: 100%|████████████████████████████████████████████████████████████████████████| 45/45 [00:00<00:00, 2998.69 examples/s]
+Map: 100%|████████████████████████████████████████████████████████████████████████| 15/15 [00:00<00:00, 2144.11 examples/s]
+Train samples: 45
+Validation samples: 15
+Starting training...
+⏳ This will take longer on CPU - please be patient
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+  0%|                                                                                               | 0/33 [00:00<?, ?it/s]C:\Users\es1service.DOMAIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\utils\data\dataloader.py:668: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+{'loss': 3.2158, 'grad_norm': 2.515110731124878, 'learning_rate': 0.00011999999999999999, 'epoch': 0.44}
+{'loss': 2.8652, 'grad_norm': 3.3578743934631348, 'learning_rate': 0.00027, 'epoch': 0.89}
+{'eval_loss': 2.018625020980835, 'eval_runtime': 34.801, 'eval_samples_per_second': 0.431, 'eval_steps_per_second': 0.431, 'epoch': 1.0}
+ 36%|███████████████████████████████▎                                                      | 12/33 [03:48<04:33, 13.04s/it]C:\Users\es1service.DOMAIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\utils\data\dataloader.py:668: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+{'loss': 2.0129, 'grad_norm': 18.045757293701172, 'learning_rate': 0.0002478260869565217, 'epoch': 1.27}
+{'loss': 1.2662, 'grad_norm': 3.992032766342163, 'learning_rate': 0.0001826086956521739, 'epoch': 1.71}
+{'eval_loss': 0.8870310187339783, 'eval_runtime': 35.5589, 'eval_samples_per_second': 0.422, 'eval_steps_per_second': 0.422, 'epoch': 2.0}
+ 73%|██████████████████████████████████████████████████████████████▌                       | 24/33 [07:30<01:56, 12.96s/it]C:\Users\es1service.DOMAIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\utils\data\dataloader.py:668: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+{'loss': 1.0142, 'grad_norm': 2.7537732124328613, 'learning_rate': 0.00011739130434782608, 'epoch': 2.09}
+{'loss': 0.7814, 'grad_norm': 2.738096237182617, 'learning_rate': 5.2173913043478256e-05, 'epoch': 2.53}
+{'eval_loss': 0.823251485824585, 'eval_runtime': 33.493, 'eval_samples_per_second': 0.448, 'eval_steps_per_second': 0.448, 'epoch': 2.8}
+{'train_runtime': 632.5413, 'train_samples_per_second': 0.213, 'train_steps_per_second': 0.052, 'train_loss': 1.7677846388383345, 'epoch': 2.8}
+100%|██████████████████████████████████████████████████████████████████████████████████████| 33/33 [10:32<00:00, 19.17s/it] 
+Model saved to ./llama-3.2-sentiment-cpu
+
+======================================================================
+TESTING MODEL
+======================================================================
+
+Predictions:
+----------------------------------------------------------------------
+C:\Users\es1service.DOMAIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\generation\configuration_utils.py:631: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.1` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+C:\Users\es1service.DOMAIN\AppData\Local\Programs\Python\Python312\Lib\site-packages\transformers\generation\configuration_utils.py:636: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+✓ Text: This is incredible! Best thing ever!
+  Expected: positive | Predicted: positive
+
+✓ Text: Very disappointed with the quality.
+  Expected: negative | Predicted: negative
+
+✓ Text: It's okay, nothing special.
+  Expected: neutral | Predicted: neutral
+
+✓ Text: Absolutely love this product!
+  Expected: positive | Predicted: positive
+
+✓ Text: Terrible, complete waste of money.
+  Expected: negative | Predicted: negative
+
+✓ Text: Average quality, does the job.
+  Expected: neutral | Predicted: neutral
+
+✓ Text: Outstanding! Highly recommend!
+  Expected: positive | Predicted: positive
+
+✓ Text: Poor quality, not satisfied.
+  Expected: negative | Predicted: negative
+
+✓ Text: Decent product, nothing special.
+  Expected: neutral | Predicted: neutral
+
+✓ Text: Perfect! Exactly what I wanted!
+  Expected: positive | Predicted: positive
+
+======================================================================
+ACCURACY: 10/10 = 100.0%
+======================================================================
+
+Enter text: Hopless movies, but acting is okay
+Predicted Sentiment: neutral
+
+Enter text: awesome movie, great screen play
+Predicted Sentiment: positive
+
+Enter text: not up to  the mark
+Predicted Sentiment: negative
+
+Enter text: quit
+PS D:\GENAI\HCL\LEVEL05\Assisgnment2\TransferLearning> 
